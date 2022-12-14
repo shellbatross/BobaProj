@@ -5,21 +5,16 @@ from .. import movie_client
 from ..forms import MovieReviewForm, SearchForm
 from ..models import User, Review
 from ..utils import current_time
-
+import os 
 movies = Blueprint("movies", __name__)
 
-
 """ ************ View functions ************ """
-
+#Sign going to have to nuke this soon 
 
 @movies.route("/", methods=["GET", "POST"])
 def index():
-    form = SearchForm()
-
-    if form.validate_on_submit():
-        return redirect(url_for("movies.query_results", query=form.search_query.data))
-
-    return render_template("index.html", form=form)
+    pics = ["chocolate.png"]
+    return render_template("index.html", all_flavors= pics)
 
 
 @movies.route("/search-results/<query>", methods=["GET"])
