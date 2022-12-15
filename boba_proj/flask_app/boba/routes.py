@@ -6,18 +6,18 @@ from ..forms import MovieReviewForm, SearchForm
 from ..models import User, Review
 from ..utils import current_time
 import os 
-movies = Blueprint("movies", __name__)
+bobas = Blueprint("bobas", __name__)
 
 """ ************ View functions ************ """
 #Sign going to have to nuke this soon 
 
-@movies.route("/", methods=["GET", "POST"])
+@bobas.route("/", methods=["GET", "POST"])
 def index():
     pics = ["chocolate.png"]
     return render_template("index.html", all_flavors= pics)
 
 
-@movies.route("/search-results/<query>", methods=["GET"])
+@bobas.route("/search-results/<query>", methods=["GET"])
 def query_results(query):
     try:
         results = movie_client.search(query)
@@ -28,7 +28,7 @@ def query_results(query):
     return render_template("query.html", results=results)
 
 
-@movies.route("/movies/<movie_id>", methods=["GET", "POST"])
+@bobas.route("/movies/<movie_id>", methods=["GET", "POST"])
 def movie_detail(movie_id):
     try:
         result = movie_client.retrieve_movie_by_id(movie_id)
@@ -56,9 +56,10 @@ def movie_detail(movie_id):
     )
 
 
-@movies.route("/user/<username>")
+@bobas.route("/user/<username>")
 def user_detail(username):
     user = User.objects(username=username).first()
     reviews = Review.objects(commenter=user)
 
     return render_template("user_detail.html", username=username, reviews=reviews)
+
