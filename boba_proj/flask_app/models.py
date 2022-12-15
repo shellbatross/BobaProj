@@ -35,5 +35,5 @@ class Review(db.Document):
 class Boba(db.Document):
     buyer = db.ReferenceField(User, required=True)
     boba_name = db.StringField(required=True, min_length=1, max_length=100)
-    boba_price = db.StringField(required=True, min_length=1, max_length=100)
+    boba_price = db.IntField(required=True, min_length=1, max_length=100)
 

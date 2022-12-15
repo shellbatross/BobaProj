@@ -35,7 +35,7 @@ def query_results(query):
 def boba_detail(boba_id):
     try:
         result = movie_client.retrieve_boba_by_id(boba_id) #TODO: harcode a list of bobas
-        nutrition = movie_client.get_nutrition(boba_id)
+        #nutrition = movie_client.get_nutrition(boba_id)
     except ValueError as e:
         flash(str(e))
         return redirect(url_for("users.login"))
@@ -50,6 +50,7 @@ def boba_detail(boba_id):
             boba_price = result.price
         )
         review.save()
+        return redirect(request.path)
     
     cart_form = AddToCartForm()
     if cart_form.validate_on_submit() and current_user.is_authenticated:
@@ -59,8 +60,6 @@ def boba_detail(boba_id):
             boba_price = result.price
         )
         boba.save()
-
-        return redirect(request.path)
 
     
     reviews = Review.objects(boba_name=boba_id)
