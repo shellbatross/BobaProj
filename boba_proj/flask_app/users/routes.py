@@ -1,12 +1,15 @@
 from flask import Blueprint, redirect, url_for, render_template, flash, request
 from flask_login import current_user, login_required, login_user, logout_user
+from flask_mail import Mail, Message
 
-from .. import bcrypt
+from .. import bcrypt, mail
 from werkzeug.utils import secure_filename
 import io
 import base64
 from ..forms import RegistrationForm, LoginForm, UpdateUsernameForm, UpdateProfilePicForm
 from ..models import User
+
+
 
 """
 Definitely keeping these to use as reference for when we make our own blueprints
@@ -32,6 +35,13 @@ def register():
         hashed = bcrypt.generate_password_hash(form.password.data).decode("utf-8")
         user = User(username=form.username.data, email=form.email.data, password=hashed)
         user.save()
+        msg = Message(
+                'Hello',
+                sender ='bobatea.shop1@gmail.com',
+                recipients = [form.email.data]
+               )
+        msg.body = 'Hewwo, thanks for registering for our boba shop account uwu'
+        mail.send(msg)
 
         return redirect(url_for("users.login"))
 
