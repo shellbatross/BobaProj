@@ -16,7 +16,19 @@
     <p>I love boba too and Michelle </p>
     <img src="{{url_for('static', filename = '/images/steph.png')}}" width = 200 height = 200 class="rounded float-left" alt="...">
   </div>
-<div class = "button-go-back">
-  <a href="{{url_for('bobas.index')}}" class="btn btn-primary"><button type="button" class="btn btn-primary btn-lg btn-block">Go back to our shop!</button></a>
+<div classname = "overview">
+<b>An overview of our project: </b>
+<p> A boba shop website where users
+    can browse pictures of the boba drinks that our shop has to offer and add items to their
+    cart. For a specific item/boba drink, there is a dedicated page for it where users can
+    submit reviews of that drink and see other reviews, add to their cart and another dedicated page where they
+    can see their nutritional calorie value. Anyone can submit a review(we do not plan to have
+    functionality that processes payments so we would not be able to differentiate whether a
+    user purchased this drink or not). A user with an account will be able to set their profile
+    picture for their account and all the reviews they submitted(while logged in) will be
+    displayed on that page</p>
 </div>
+    <div class = "button-go-back">
+        <a href="{{url_for('bobas.index')}}" class="btn btn-primary"><button type="button" class="btn btn-primary btn-lg btn-block">Go back to our shop!</button></a>
+      </div>
 {% endblock %}

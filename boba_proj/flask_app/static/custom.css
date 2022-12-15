@@ -145,7 +145,7 @@ movie {
 
   .button-go-back {
     position: relative;
-    top: 200px;
+    top: 100px;
     left: 50px;
   }
 
@@ -153,4 +153,4 @@ movie {
     position: relative;
     left: 450px;
   }
-  
+
