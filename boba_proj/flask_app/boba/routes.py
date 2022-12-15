@@ -79,10 +79,7 @@ def user_detail(username):
 #TODO: WIP
 @bobas.route("/user/cart")
 def cart_detail():
-    if current_user.is_authenticated:
-        user = current_user._get_current_object()
-    else:
-        user = None
+    user = current_user._get_current_object()
     cart = Boba.objects(buyer=user) # gets the cart for username
 
-    return render_template("cart_detail.html", username=user, cart=cart)
+    return render_template("cart_detail.html", user=user, cart=cart)

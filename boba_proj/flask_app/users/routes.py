@@ -2,7 +2,7 @@ from flask import Blueprint, redirect, url_for, render_template, flash, request
 from flask_login import current_user, login_required, login_user, logout_user
 
 from .. import bcrypt
-from ..forms import RegistrationForm, LoginForm #,UpdateUsernameForm
+from ..forms import RegistrationForm, LoginForm, UpdateUsernameForm
 from ..models import User
 
 """
@@ -57,7 +57,7 @@ def logout():
     logout_user()
     return redirect(url_for("movies.index"))
 
-""""
+
 @users.route("/account", methods=["GET", "POST"])
 @login_required
 def account():
@@ -74,4 +74,3 @@ def account():
         title="Account",
         username_form=username_form,
     )
-"""

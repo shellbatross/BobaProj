@@ -27,8 +27,8 @@ class Review(db.Document):
     commenter = db.ReferenceField(User, required=True)
     content = db.StringField(required=True, min_length=5, max_length=500)
     date = db.StringField(required=True)
-    boba_name = db.StringField(required=True, min_length=9, max_length=9)
-    movie_title = db.StringField(required=True, min_length=1, max_length=100)
+    boba_name = db.StringField(required=True, min_length=1, max_length=9)
+    boba_price = db.IntField(required=True, min_length=1, max_length=100)
 
 
 class Boba(db.Document):
