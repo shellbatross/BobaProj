@@ -1,0 +1,125 @@
+{% extends "header.html" %}
+{% block content %}
+{% if error_msg %}
+    <p>{{ error_msg }}</p>
+{% endif %}
+<div class="row">
+    <div class="col">
+<section class="performance-facts">
+    <header class="performance-facts__header">
+      <h1 class="performance-facts__title">Nutrition Facts</h1>
+      <p>Serving Size 1 Boba {{boba}} Milk Tea drink
+        <p>Serving Per Container: One Boba {{boba}} Milk Tea drink</p>
+    </header>
+    <table class="performance-facts__table">
+      <thead>
+        <tr>
+          <th colspan="3" class="small-info">
+            Amount Per Serving
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th colspan="2">
+            <b>Calories</b>
+            {{nutrition['calories']}}
+          </th>
+          <td>
+          </td>
+        </tr>
+        <tr class="thick-row">
+          <td colspan="3" class="small-info">
+          </td>
+        </tr>
+        <tr>
+          <th colspan="2">
+            <b>Total Fat</b>
+            {{nutrition['fat_total_g']}}
+          </th>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <td class="blank-cell">
+          </td>
+          <th>
+            Saturated Fat
+            {{nutrition['fat_saturated_g']}}
+          </th>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <td class="blank-cell">
+          </td>
+          <th>
+          </th>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="2">
+            <b>Cholesterol</b>
+            {{nutrition['cholesterol_mg']}}
+          </th>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="2">
+            <b>Sodium</b>
+            {{nutrition['sodium_mg']}}
+          </th>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="2">
+            <b>Total Carbohydrate</b>
+            {{nutrition['carbohydrates_total_g']}}
+          </th>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <td class="blank-cell">
+          </td>
+          <th>
+            Dietary Fiber
+            {{nutrition['fiber_g']}}
+          </th>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <td class="blank-cell">
+          </td>
+          <th>
+            Sugars
+            {{nutrition['sugar_g']}}
+          </th>
+          <td>
+          </td>
+        </tr>
+        <tr class="thick-end">
+          <th colspan="2">
+            <b>Protein</b>
+            {{nutrition['protein_g']}}
+          </th>
+          <td>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+  
+  </section>
+  </div>
+  <div class="col">
+    <font size="+3"><b>"If you or a loved one is suffering from boba addiction, also known as "Michellitis", you might be entitled to financial compensation." </b></font>
+    <img src = "{{url_for('static', filename = '/images/meirl.png')}}" width = "500" height = "400"></img>
+  </div>
+</div>
+<a href="{{url_for('bobas.boba_detail',boba_id = boba)}}" class="btn btn-primary"><button type="button" class="btn btn-primary btn-lg btn-block">Go back</button></a>
+{% endblock %}

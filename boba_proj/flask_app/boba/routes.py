@@ -76,6 +76,17 @@ def boba_detail(boba_id):
         "boba_detail.html", form=review_form, cart_form = cart_form, boba=result, reviews=reviews,nutrition = nutrition
     )
 
+@bobas.route("/bobas/<boba_id>/nutrition", methods=["GET", "POST"])
+def boba_nutrition(boba_id):
+    try:
+        nutrition = movie_client.get_nutrition(boba_id)
+    except ValueError as e:
+        flash(str(e))
+        return redirect(url_for("users.login"))
+
+    return render_template(
+        "nutrition.html", nutrition = nutrition, boba = boba_id
+    )
 
 @bobas.route("/user/<username>")
 def user_detail(username):
