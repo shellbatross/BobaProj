@@ -12,6 +12,7 @@ from wtforms.validators import (
     EqualTo,
     ValidationError,
 )
+import re
 
 
 from .models import User
@@ -36,7 +37,7 @@ class RegistrationForm(FlaskForm):
         "Username", validators=[InputRequired(), Length(min=1, max=40)]
     )
     email = StringField("Email", validators=[InputRequired(), Email()])
-    password = PasswordField("Password", validators=[InputRequired()])
+    password = PasswordField("Password", validators=[InputRequired(), Length(min=10, max=40)])
     confirm_password = PasswordField(
         "Confirm Password", validators=[InputRequired(), EqualTo("password")]
     )
@@ -51,7 +52,11 @@ class RegistrationForm(FlaskForm):
         user = User.objects(email=email.data).first()
         if user is not None:
             raise ValidationError("Email is taken")
-
+    
+    def validate_password(self, password):
+        pattern = re.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$")
+        if not (pattern.match(password.data)):
+            raise ValidationError("Password must contain minimum ten characters, at least one uppercase letter, one lowercase letter, one number and one special character:")
 
 class LoginForm(FlaskForm):
     username = StringField("Username", validators=[InputRequired()])
