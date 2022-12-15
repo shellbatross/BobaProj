@@ -64,5 +64,23 @@
   </div>
 </div>
 {% endif %}
+
+{% if current_user.is_authenticated %}
+{# Add boba to cart form #}
+<div class="row">
+  <div class="col">
+    <form method="POST" action="">
+      {{ cart_form.csrf_token }}
+      <div class="form-group">
+
+      </div>
+      {{ cart_form.add_to_cart() }}
+    </form>
+  </div>
+</div>
+{% endif %}
+
 {% endif %}
 {% endblock content %}
+
+

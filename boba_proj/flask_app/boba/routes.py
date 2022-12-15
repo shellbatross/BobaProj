@@ -65,7 +65,7 @@ def boba_detail(boba_id):
     reviews = Review.objects(boba_name=boba_id)
 
     return render_template(
-        "boba_detail.html", form=review_form, boba=result, reviews=reviews
+        "boba_detail.html", form=review_form, cart_form = cart_form, boba=result, reviews=reviews
     )
 
 
