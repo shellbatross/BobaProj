@@ -4,15 +4,13 @@
 {% if error_msg %}
 <b>{{ error_msg }}</b>
 {% endif %}
-
 {% if boba %}
-
 {# Display card for the boba details #}
 <div class="row">
   <div class="col">
     <div class="card text-center">
       <div class="card-header">
-        {{ boba_name }} ({{ boba_price }})
+        {{ boba.boba_name }} ({{ boba.boba_price }})
       </div>
     </div>
   </div>

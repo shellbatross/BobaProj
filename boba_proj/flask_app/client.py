@@ -19,74 +19,8 @@ class MovieClient(object):
         self.sess = requests.Session()
         self.base_url = f"http://www.omdbapi.com/?apikey={api_key}&r=json&type=movie&"
 
-    def search(self, search_string):
-        """
-        Searches the API for the supplied search_string, and returns
-        a list of Media objects if the search was successful, or the error response
-        if the search failed.
-
-        Only use this method if the user is using the search bar on the website.
-        """
-        search_string = "+".join(search_string.split())
-        page = 1
-
-        search_url = f"s={search_string}&page={page}"
-
-        resp = self.sess.get(self.base_url + search_url)
-
-        if resp.status_code != 200:
-            raise ValueError(
-                "Search request failed; make sure your API key is correct and authorized"
-            )
-
-        data = resp.json()
-
-        if data["Response"] == "False":
-            raise ValueError(f'[ERROR]: Error retrieving results: \'{data["Error"]}\' ')
-
-        search_results_json = data["Search"]
-        remaining_results = int(data["totalResults"])
-
-        result = []
-
-        ## We may have more results than are first displayed
-        while remaining_results != 0:
-            for item_json in search_results_json:
-                result.append(Movie(item_json))
-                remaining_results -= len(search_results_json)
-            page += 1
-            search_url = f"s={search_string}&page={page}"
-            resp = self.sess.get(self.base_url + search_url)
-            if resp.status_code != 200 or resp.json()["Response"] == "False":
-                break
-            search_results_json = resp.json()["Search"]
-
-        return result
-
-    def retrieve_movie_by_id(self, imdb_id):
-        """
-        Use to obtain a Movie object representing the movie identified by
-        the supplied imdb_id
-        """
-        movie_url = self.base_url + f"i={imdb_id}&plot=full"
-
-        resp = self.sess.get(movie_url)
-
-        if resp.status_code != 200:
-            raise ValueError(
-                "Search request failed; make sure your API key is correct and authorized"
-            )
-
-        data = resp.json()
-
-        if data["Response"] == "False":
-            raise ValueError(f'Error retrieving results: \'{data["Error"]}\' ')
-
-        movie = Movie(data, detailed=True)
-
-        return movie
     #IDKNO WHAT X IS, IT SAID I WAS SENDING TWO THINGS HERE LMAO BUT IT WORKS BRO
-    def retrieve_boba_by_id(boba_id,x):
+    def retrieve_boba_by_id(x,boba_id):
         #hardcoded list of flavors
         all_flavors = ["cherry","latte","chocolate","chai tea",
         "raspberry", "mango", "neapolitan ice cream", "volcano",
@@ -99,7 +33,7 @@ class MovieClient(object):
 
 
         if boba_id in all_flavors:
-            drink = Boba(prices[boba_id], all_flavors[boba_id])
+            drink = Boba(prices[boba_id], boba_id)
 
         else:
             #dunno what to return in this case yet
