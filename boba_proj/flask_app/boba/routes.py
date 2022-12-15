@@ -61,7 +61,8 @@ def boba_detail(boba_id):
 
         return redirect(request.path)
 
-    reviews = Review.objects(boba_id=boba_id)
+    
+    reviews = Review.objects(boba_name=boba_id)
 
     return render_template(
         "boba_detail.html", form=review_form, boba=result, reviews=reviews
