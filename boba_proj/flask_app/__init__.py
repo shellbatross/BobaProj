@@ -25,7 +25,7 @@ csp = {
         '\'self\'',
         '*.mailsite.com'
     ],
-    'img-src': ['\'self\'', '*'],
+    'img-src': ['\'self\'', '*', 'data:'],
     'style-src': ['unsafe-inline', 'unsafe-hashes', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'],
     'style-src-elem': ['http://127.0.0.1:5000/static/custom.css', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css', 'getboostrap.com'],
     'script-src-elem':['https://code.jquery.com/jquery-3.4.1.slim.min.js', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'], 
