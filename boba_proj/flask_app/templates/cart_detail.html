@@ -17,13 +17,15 @@
             <li class="media review-item">
                 <div class="media-body">
                     <p>
+                        <img src = "{{url_for('static', filename = '/images/' + item.boba_name + '.png')}}" height = 100 ></img>
                         {{ item.boba_name }}
-                        {{ item.boba_price }}
+                        {{ item.boba_price }}$
                     </p>
-                </div>
+                </div>  
             </li>
             {% endfor %}
         </ul>
+        <a href="{{url_for('bobas.index')}}"><button type="button" class="btn btn-secondary btn-lg btn-block">Go back shopping</button></a>
     </div>
 </div>
 {% endblock %}

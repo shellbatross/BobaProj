@@ -1,0 +1,22 @@
+{% extends "header.html" %}
+{% block content %}
+
+
+<div class="text-center-left">
+    <b>Michelle Zheng</b>
+    <p>About me:</p>
+    <p>I love boba and Stephanie</p>
+    <img src="{{url_for('static', filename = '/images/michelle.png')}}"  width = 200 height = 200 class="rounded float-left" alt="...">
+  </div>
+  
+ 
+  <div class="text-center-right">
+    <b>Stephanie Albornoz</b>
+    <p>About me:</p>
+    <p>I love boba too and Michelle </p>
+    <img src="{{url_for('static', filename = '/images/steph.png')}}" width = 200 height = 200 class="rounded float-left" alt="...">
+  </div>
+<div class = "button-go-back">
+  <a href="{{url_for('bobas.index')}}" class="btn btn-primary"><button type="button" class="btn btn-primary btn-lg btn-block">Go back to our shop!</button></a>
+</div>
+{% endblock %}

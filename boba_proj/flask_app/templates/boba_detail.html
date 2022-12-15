@@ -5,7 +5,9 @@
 <b>{{ error_msg }}</b>
 {% endif %}
 {% if boba %}
-
+<div class = "detail-pic">
+<img src = "{{url_for('static', filename = '/images/' + boba.name + '.png')}}"></img>
+</div>
 {# Display card for the boba details #}
 <div class="row">
   <div class="col">
@@ -80,6 +82,7 @@
     </form>
   </div>
 </div>
+<a href="{{url_for('bobas.index')}}"><button type="button" class="btn btn-secondary btn-lg btn-block">Go back shopping</button></a>
 {% endif %}
 
 {% endif %}
