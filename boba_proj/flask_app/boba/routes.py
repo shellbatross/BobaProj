@@ -6,7 +6,15 @@ from ..forms import BobaReviewForm, SearchForm, AddToCartForm
 from ..models import User, Review, Boba
 from ..utils import current_time
 import os 
+import io
+import base64
 bobas = Blueprint("bobas", __name__)
+
+def get_b64_img(username):
+    user = User.objects(username=username).first()
+    bytes_im = io.BytesIO(user.profile_pic.read())
+    image = base64.b64encode(bytes_im.getvalue()).decode()
+    return image
 
 """ ************ View functions ************ """
 #Sign going to have to nuke this soon 
@@ -80,6 +88,7 @@ def user_detail(username):
 @bobas.route("/user/cart")
 def cart_detail():
     user = current_user._get_current_object()
+    img = get_b64_img(user.username)
     cart = Boba.objects(buyer=user) # gets the cart for username
 
-    return render_template("cart_detail.html", user=user, cart=cart)
+    return render_template("cart_detail.html", user=user, cart=cart, image=img)
