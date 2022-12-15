@@ -54,7 +54,7 @@ class RegistrationForm(FlaskForm):
             raise ValidationError("Email is taken")
     
     def validate_password(self, password):
-        pattern = re.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$")
+        pattern = re.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{10,}$")
         if not (pattern.match(password.data)):
             raise ValidationError("Password must contain minimum ten characters, at least one uppercase letter, one lowercase letter, one number and one special character:")
 
