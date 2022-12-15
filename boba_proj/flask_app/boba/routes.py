@@ -13,7 +13,7 @@ bobas = Blueprint("bobas", __name__)
 
 @bobas.route("/", methods=["GET", "POST"])
 def index():
-    pics = ["chocolate.png"]
+    pics = '/images/chocolate.png'
     # AddToCartForm
     # return redirect(url_for("bobas.cart"))
     return render_template("index.html", all_flavors= pics)

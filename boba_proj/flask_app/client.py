@@ -3,26 +3,17 @@ import requests
 """
 Doing API calls here to check the Ninja Calorie API
 """
-
-class Movie(object):
-    def __init__(self, omdb_json, detailed=False):
-        if detailed:
-            self.genres = omdb_json["Genre"]
-            self.director = omdb_json["Director"]
-            self.actors = omdb_json["Actors"]
-            self.plot = omdb_json["Plot"]
-            self.awards = omdb_json["Awards"]
-
-        self.title = omdb_json["Title"]
-        self.year = omdb_json["Year"]
-        self.imdb_id = omdb_json["imdbID"]
-        self.type = "Movie"
-        self.poster_url = omdb_json["Poster"]
+#Might change later to have the caloric info
+class Boba:
+    def __init__(self, price, name):
+        self.name = name
+        self.price = price
 
     def __repr__(self):
-        return self.title
+        return self.name
 
 
+#Gonna change this to make links instead to get the calorie information 
 class MovieClient(object):
     def __init__(self, api_key):
         self.sess = requests.Session()
@@ -94,6 +85,29 @@ class MovieClient(object):
         movie = Movie(data, detailed=True)
 
         return movie
+    #IDKNO WHAT X IS, IT SAID I WAS SENDING TWO THINGS HERE LMAO BUT IT WORKS BRO
+    def retrieve_boba_by_id(boba_id,x):
+        #hardcoded list of flavors
+        all_flavors = ["cherry","latte","chocolate","chai tea",
+        "raspberry", "mango", "neapolitan ice cream", "volcano",
+        "strawberry foam cap", "strawberry yogurt","strawberry", "thai tea"
+        ]
+
+        prices = {"cherry" : 6.75,"latte": 7,"chocolate": 5.85,"chai tea": 4.95,
+        "raspberry": 6.75 , "mango" : 6.75, "neapolitan ice cream": 7.95, "volcano" : 7.95,
+        "strawberry foam cap": 8, "strawberry yogurt": 8,"strawberry": 5.85, "thai tea": 5.85}
+
+
+        if boba_id in all_flavors:
+            drink = Boba(prices[boba_id], all_flavors[boba_id])
+
+        else:
+            #dunno what to return in this case yet
+            drink  = ""
+
+        return drink
+
+
 
 
 ## -- Example usage -- ###
