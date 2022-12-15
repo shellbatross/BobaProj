@@ -14,26 +14,26 @@ class Boba:
 
 
 #Gonna change this to make links instead to get the calorie information 
-class MovieClient(object):
-    def __init__(self, api_key):
-        self.sess = requests.Session()
-        self.base_url = f"http://www.omdbapi.com/?apikey={api_key}&r=json&type=movie&"
-    
+class MovieClient():
+
     def get_nutrition(x,boba_id):
         api_url = 'https://api.calorieninjas.com/v1/nutrition?query='
-        query = '3lb carrots and a chicken sandwich'
+
+        query = 'Boba ' + boba_id + ' Milk ' + 'Tea'
         response = requests.get(api_url + query, headers={'X-Api-Key': 'peGFHoCh+1qQbvMjgibUAw==LP5wq86JvTZHz7S6'})
         data = response.json()
         if response.status_code == requests.codes.ok:
+            ingredients = data['items']
             nutrition = {}
-
-            for i in data:
-                i = json.loads(i)
+            for i in ingredients:
                 for j in i.keys():
-                    if j not in nutrition and j != 'name':
-                        nutrition[j] = i[j]
+                    if j == 'name':
+                        continue
+                    if j not in nutrition:
+                        nutrition[j] = int(i[j])
                     else:
-                        nutrition[j] += i[j]
+                        nutrition[j] += int(i[j])
+
             return nutrition
         
 
@@ -44,12 +44,12 @@ class MovieClient(object):
     def retrieve_boba_by_id(x,boba_id):
         #hardcoded list of flavors
         all_flavors = ["cherry","latte","chocolate","chai tea",
-        "raspberry", "mango", "neapolitan ice cream", "volcano",
+        "raspberry", "mango", "neapolitan ice cream", "condensed milk pudding",
         "strawberry foam cap", "strawberry yogurt","strawberry", "thai tea"
         ]
 
         prices = {"cherry" : 6.75,"latte": 7,"chocolate": 5.85,"chai tea": 4.95,
-        "raspberry": 6.75 , "mango" : 6.75, "neapolitan ice cream": 7.95, "volcano" : 7.95,
+        "raspberry": 6.75 , "mango" : 6.75, "neapolitan ice cream": 7.95, "condensed milk pudding" : 7.95,
         "strawberry foam cap": 8, "strawberry yogurt": 8,"strawberry": 5.85, "thai tea": 5.85}
 
 

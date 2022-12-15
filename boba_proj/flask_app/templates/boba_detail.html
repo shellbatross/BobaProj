@@ -5,14 +5,123 @@
 <b>{{ error_msg }}</b>
 {% endif %}
 {% if boba %}
+<section class="performance-facts">
+  <header class="performance-facts__header">
+    <h1 class="performance-facts__title">Nutrition Facts</h1>
+    <p>Serving Size 1 drink
+      <p>Serving Per Container: One drink</p>
+  </header>
+  <table class="performance-facts__table">
+    <thead>
+      <tr>
+        <th colspan="3" class="small-info">
+          Amount Per Serving
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th colspan="2">
+          <b>Calories</b>
+          {{nutrition['calories']}}
+        </th>
+        <td>
+        </td>
+      </tr>
+      <tr class="thick-row">
+        <td colspan="3" class="small-info">
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">
+          <b>Total Fat</b>
+          {{nutrition['fat_total_g']}}
+        </th>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td class="blank-cell">
+        </td>
+        <th>
+          Saturated Fat
+          {{nutrition['fat_saturated_g']}}
+        </th>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td class="blank-cell">
+        </td>
+        <th>
+        </th>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">
+          <b>Cholesterol</b>
+          {{nutrition['cholesterol_mg']}}
+        </th>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">
+          <b>Sodium</b>
+          {{nutrition['sodium_mg']}}
+        </th>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">
+          <b>Total Carbohydrate</b>
+          {{nutrition['carbohydrates_total_g']}}
+        </th>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td class="blank-cell">
+        </td>
+        <th>
+          Dietary Fiber
+          {{nutrition['fiber_g']}}
+        </th>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td class="blank-cell">
+        </td>
+        <th>
+          Sugars
+          {{nutrition['sugar_g']}}
+        </th>
+        <td>
+        </td>
+      </tr>
+      <tr class="thick-end">
+        <th colspan="2">
+          <b>Protein</b>
+          {{nutrition['protein_g']}}
+        </th>
+        <td>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</section>
 {# Display card for the boba details #}
 <div class="row">
   <div class="col">
     <div class="card text-center">
       <div class="card-header">
-        {{ boba.name }} ({{ boba.price}}) {{nutrition}}
+        {{ boba.name }} ({{ boba.price}} $) 
       </div>
-      Nutrition:
 
     </div>
   </div>
