@@ -53,7 +53,7 @@ def boba_detail(boba_id):
     cart_form = AddToCartForm()
     if cart_form.validate_on_submit() and current_user.is_authenticated:
         boba = Boba(
-            buyer = current_user.get_current_object(),
+            buyer = current_user._get_current_object(),
             boba_name = result.name,
             boba_price = result.price
         )
