@@ -24,7 +24,7 @@ class SearchForm(FlaskForm):
     submit = SubmitField("Search")
 
 
-class MovieReviewForm(FlaskForm):
+class BobaReviewForm(FlaskForm):
     text = TextAreaField(
         "Comment", validators=[InputRequired(), Length(min=5, max=500)]
     )
@@ -70,3 +70,10 @@ class UpdateUsernameForm(FlaskForm):
             user = User.objects(username=username.data).first()
             if user is not None:
                 raise ValidationError("That username is already taken")
+
+class AddToCartForm(FlaskForm):
+    cart_owner = StringField("Username")
+    item_name = StringField("Item name")
+    item_price = StringField("Item price")
+    add_to_cart = SubmitField("Add to Cart")
+

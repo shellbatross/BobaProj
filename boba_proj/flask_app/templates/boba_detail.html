@@ -5,23 +5,14 @@
 <b>{{ error_msg }}</b>
 {% endif %}
 
-{% if movie %}
+{% if boba %}
 
-{# Display card for the movie details #}
+{# Display card for the boba details #}
 <div class="row">
   <div class="col">
     <div class="card text-center">
       <div class="card-header">
-        {{ movie.title }} ({{ movie.year }})
-      </div>
-      <div class="card-body">
-        <img src="{{ movie.poster_url }}" class="mr-3 movie" alt="alt text">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><b>Directed by:</b> {{ movie.director }}</li>
-          <li class="list-group-item"><b>Actors:</b> {{ movie.actors }}</li>
-          <li class="list-group-item"><b>Genres:</b> {{ movie.genres }}</li>
-          <li class="list-group-item"><b>Awards:</b> {{ movie.awards }}</li>
-        </ul>
+        {{ boba_name }} ({{ boba_price }})
       </div>
     </div>
   </div>
@@ -52,7 +43,7 @@
 </div>
 
 {% if current_user.is_authenticated %}
-{# Movie review submission form #}
+{# Boba review submission form #}
 <div class="row">
   <div class="col">
     <form method="POST" action="">

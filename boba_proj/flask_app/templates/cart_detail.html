@@ -1,0 +1,28 @@
+{% extends "header.html" %}
+{% block content %}
+More kept for reference further on ~ 
+<div class="row">
+    <div class="col">
+        <img class="propic" src="data:image/png;base64,{{image}}" alt="image">
+    </div>
+    <div class="col">
+        <h2>{{ username }}'s Cart</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h1> Cart <small class="float-right">{{ cart.count() }} items</small></h1>
+        <ul class="media-list">
+            {% for item in cart %}
+            <li class="media review-item">
+                <div class="media-body">
+                    <p>
+                        {{ cart.content }}
+                    </p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

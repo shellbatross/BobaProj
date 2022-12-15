@@ -29,3 +29,10 @@ class Review(db.Document):
     date = db.StringField(required=True)
     imdb_id = db.StringField(required=True, min_length=9, max_length=9)
     movie_title = db.StringField(required=True, min_length=1, max_length=100)
+
+
+class Boba(db.Document):
+    buyer = db.ReferenceField(User, required=True)
+    item_name = db.StringField(required=True, min_length=1, max_length=100)
+    item_price = db.StringField(required=True, min_length=1, max_length=100)
+
