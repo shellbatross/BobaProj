@@ -11,6 +11,7 @@ from flask_login import (
 from flask_bcrypt import Bcrypt
 from werkzeug.utils import secure_filename
 from flask_mail import Mail, Message
+from flask_talisman import Talisman
 
 # stdlib
 from datetime import datetime
@@ -19,12 +20,25 @@ import os
 # local
 from .client import MovieClient
 
+csp = {
+    'default-src': [
+        '\'self\'',
+        '*.mailsite.com'
+    ],
+    'img-src': ['\'self\'', '*'],
+    'style-src': ['unsafe-inline', 'unsafe-hashes', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'],
+    'style-src-elem': ['http://127.0.0.1:5000/static/custom.css', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css', 'getboostrap.com'],
+    'script-src-elem':['https://code.jquery.com/jquery-3.4.1.slim.min.js', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'], 
+}
+
 
 db = MongoEngine()
 login_manager = LoginManager()
 bcrypt = Bcrypt()
 mail = Mail()
 movie_client = MovieClient()
+talisman = Talisman()
+
 
 from .users.routes import users
 from .boba.routes import bobas
@@ -52,6 +66,7 @@ def create_app(test_config=None):
     login_manager.init_app(app)
     bcrypt.init_app(app)
     mail.init_app(app)
+    talisman.init_app(app, content_security_policy=csp, content_security_policy_report_uri='https://mywebsite.com/csp_reports')
 
     app.register_blueprint(users)
     app.register_blueprint(bobas)
