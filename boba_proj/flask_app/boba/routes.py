@@ -35,6 +35,7 @@ def query_results(query):
 def boba_detail(boba_id):
     try:
         result = movie_client.retrieve_boba_by_id(boba_id) #TODO: harcode a list of bobas
+        nutrition = movie_client.get_nutrition(boba_id)
     except ValueError as e:
         flash(str(e))
         return redirect(url_for("users.login"))
@@ -65,7 +66,7 @@ def boba_detail(boba_id):
     reviews = Review.objects(boba_name=boba_id)
 
     return render_template(
-        "boba_detail.html", form=review_form, boba=result, reviews=reviews
+        "boba_detail.html", form=review_form, boba=result, reviews=reviews, nutrition = nutrition
     )
 
 

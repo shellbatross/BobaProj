@@ -1,5 +1,5 @@
 import requests
-
+import json
 """
 Doing API calls here to check the Ninja Calorie API
 """
@@ -18,6 +18,27 @@ class MovieClient(object):
     def __init__(self, api_key):
         self.sess = requests.Session()
         self.base_url = f"http://www.omdbapi.com/?apikey={api_key}&r=json&type=movie&"
+    
+    def get_nutrition(x,boba_id):
+        api_url = 'https://api.calorieninjas.com/v1/nutrition?query='
+        query = '3lb carrots and a chicken sandwich'
+        response = requests.get(api_url + query, headers={'X-Api-Key': 'peGFHoCh+1qQbvMjgibUAw==LP5wq86JvTZHz7S6'})
+        data = response.json()
+        if response.status_code == requests.codes.ok:
+            nutrition = {}
+
+            for i in data:
+                i = json.loads(i)
+                for j in i.keys():
+                    if j not in nutrition and j != 'name':
+                        nutrition[j] = i[j]
+                    else:
+                        nutrition[j] += i[j]
+            return nutrition
+        
+
+        else:
+            print("Error:", response.status_code, response.text)
 
     #IDKNO WHAT X IS, IT SAID I WAS SENDING TWO THINGS HERE LMAO BUT IT WORKS BRO
     def retrieve_boba_by_id(x,boba_id):
