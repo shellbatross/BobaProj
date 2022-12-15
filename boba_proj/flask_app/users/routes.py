@@ -24,6 +24,9 @@ users = Blueprint("users", __name__)
 
 """ ************ User Management views ************ """
 
+@users.route("/aboutus")
+def aboutus():
+    return render_template("aboutus.html")
 
 @users.route("/register", methods=["GET", "POST"])
 def register():

@@ -126,7 +126,14 @@ movie {
     }
   }
   
-  .text-center {
+  .text-center-left {
+    float: left;
+    padding: 75px;
+    text-align: center;
+  }
+  .text-center-right {
+    float: right;
+    padding: 75px;
     text-align: center;
   }
   .thick-end {
@@ -134,5 +141,11 @@ movie {
   }
   .thin-end {
     border-bottom: 1px solid black;
+  }
+
+  .button-go-back {
+    position: relative;
+    top: 200px;
+    left: 50px;
   }
   
