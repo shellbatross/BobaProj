@@ -17,7 +17,7 @@ users = Blueprint("users", __name__)
 @users.route("/register", methods=["GET", "POST"])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for("movies.index"))
+        return redirect(url_for("bobas.index"))
 
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -33,7 +33,7 @@ def register():
 @users.route("/login", methods=["GET", "POST"])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for("movies.index"))
+        return redirect(url_for("bobas.index"))
 
     form = LoginForm()
     if form.validate_on_submit():
@@ -55,7 +55,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("movies.index"))
+    return redirect(url_for("bobas.index"))
 
 
 @users.route("/account", methods=["GET", "POST"])
