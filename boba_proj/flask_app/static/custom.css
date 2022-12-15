@@ -148,4 +148,9 @@ movie {
     top: 200px;
     left: 50px;
   }
+
+  .detail-pic{
+    position: relative;
+    left: 450px;
+  }
   

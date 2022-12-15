@@ -44,12 +44,12 @@ class MovieClient():
     def retrieve_boba_by_id(x,boba_id):
         #hardcoded list of flavors
         all_flavors = ["cherry","latte","chocolate","chai tea",
-        "raspberry", "mango", "neapolitan ice cream", "condensed milk pudding",
+        "raspberry", "mango", "neapolitan ice cream", "condensed milk",
         "strawberry foam cap", "strawberry yogurt","strawberry", "thai tea"
         ]
 
         prices = {"cherry" : 6.75,"latte": 7,"chocolate": 5.85,"chai tea": 4.95,
-        "raspberry": 6.75 , "mango" : 6.75, "neapolitan ice cream": 7.95, "condensed milk pudding" : 7.95,
+        "raspberry": 6.75 , "mango" : 6.75, "neapolitan ice cream": 7.95, "condensed milk" : 7.95,
         "strawberry foam cap": 8, "strawberry yogurt": 8,"strawberry": 5.85, "thai tea": 5.85}
 
 
