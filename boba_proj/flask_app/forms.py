@@ -56,7 +56,7 @@ class RegistrationForm(FlaskForm):
     def validate_password(self, password):
         pattern = re.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{10,}$")
         if not (pattern.match(password.data)):
-            raise ValidationError("Password must contain minimum ten characters, at least one uppercase letter, one lowercase letter, one number and one special character:")
+            raise ValidationError("Password must contain minimum ten characters, at least one uppercase letter, one lowercase letter, one number and one special character.")
 
 class LoginForm(FlaskForm):
     username = StringField("Username", validators=[InputRequired()])
