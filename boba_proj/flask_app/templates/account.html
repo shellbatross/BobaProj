@@ -1,35 +1,66 @@
-    
 {% extends "header.html" %}
 {% block content %}
-Keeping this for reference too, change edit once we make our own forms and blueprints
 <div class="row">
     <div class="col">
-        <h1>Hey, {{ current_user.username }}!</h1>
+        {# Profile picture #}
+        <img class="propic" src="data:image/png;base64,{{image}}" alt="image">
+    </div>
+    <div class="col">
+        {% if current_user.is_authenticated %}
+            <h1> Hello {{ current_user.username }}! </h1>
+        {% endif %}
     </div>
 </div>
+{% if current_user.is_authenticated %}
 <div class="row">
     <div class="col">
-        <form action="" method="post">
-            {{ username_form.csrf_token }}
+        {# Username Update Form #}
+        <form method="POST" action="">
+            {{ user_form.csrf_token }}
             <div class="form-group">
-                {{ username_form.username.label(class="form-control-label") }}
-                {{ username_form.username(class="form-control form-control-lg") }}
+                {{ user_form.username.label }}
+                {{ user_form.username(class="form-control") }}
 
-                {% if username_form.username.errors %}
+                {% if user_form.username.errors %}
                 <div class="alert alert-warning" role="alert">
-                    {% for error in username_form.username.errors %}
+                    {% for error in user_form.username.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
                 </div>
                 {% endif %}
+
             </div>
-            <div class="form-group">
-                {{ username_form.submit }}
-            </div>
+            {{ user_form.submit() }}
         </form>
     </div>
 </div>
-<a href="{{ url_for('bobas.user_detail', username=current_user.username) }}">
-    <h4>Click here to see all of your posts and comments!</h4>
-</a>
-{% endblock %}>
+{% endif %}
+<div class="row">
+    <div class="col">
+        {# Profile Picture Update Form #}
+        <form action="" method="POST" enctype="multipart/form-data">
+            {{ picture_form.csrf_token }}
+            <div class="form-group">
+                {{ picture_form.picture.label }}
+                {{ picture_form.picture(class="form-control") }}
+
+                {% if picture_form.picture.errors %}
+                <div class="alert alert-warning" role="alert">
+                    {% for error in picture_form.picture.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+            </div>
+            {{ picture_form.submit() }}
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        {# Link to see all of the current user's reviews. #}
+        <a href="{{ url_for('bobas.user_detail', username=current_user.get_id()) }}">Reviews</a>
+    </div>
+</div>
+{% endblock %}

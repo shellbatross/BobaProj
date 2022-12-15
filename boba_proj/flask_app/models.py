@@ -17,6 +17,7 @@ class User(db.Document, UserMixin):
     username = db.StringField(required=True, unique=True)
     email = db.EmailField(required=True, unique=True)
     password = db.StringField(required=True)
+    profile_pic = db.ImageField()
 
     # Returns unique string identifying our object
     def get_id(self):
@@ -36,4 +37,5 @@ class Boba(db.Document):
     buyer = db.ReferenceField(User, required=True)
     boba_name = db.StringField(required=True, min_length=1, max_length=100)
     boba_price = db.IntField(required=True, min_length=1, max_length=100)
+    image = db.StringField()
 

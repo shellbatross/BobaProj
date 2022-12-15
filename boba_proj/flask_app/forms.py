@@ -71,9 +71,17 @@ class UpdateUsernameForm(FlaskForm):
             if user is not None:
                 raise ValidationError("That username is already taken")
 
+class UpdateProfilePicForm(FlaskForm):
+    picture = FileField('Photo', validators=[
+        FileRequired(), 
+        FileAllowed(['jpg', 'png'], 'Images Only!')
+    ])
+    submit = SubmitField('Update profile picture')
+
 class AddToCartForm(FlaskForm):
     cart_owner = StringField("Username")
     item_name = StringField("Item name")
     item_price = IntegerField("Item price")
     add_to_cart = SubmitField("Add to Cart")
+
 
