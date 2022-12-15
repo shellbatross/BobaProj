@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, url_for, redirect, request, flash
 from flask_login import current_user
 
 from .. import movie_client
-from ..forms import BobaReviewForm, SearchForm
+from ..forms import BobaReviewForm, SearchForm, AddToCartForm
 from ..models import User, Review, Boba
 from ..utils import current_time
 import os 
@@ -39,24 +39,32 @@ def boba_detail(boba_id):
         flash(str(e))
         return redirect(url_for("users.login"))
 
-    form = BobaReviewForm()
-    if form.validate_on_submit() and current_user.is_authenticated:
+    review_form = BobaReviewForm()
+    if review_form.validate_on_submit() and current_user.is_authenticated:
         review = Review(
             commenter=current_user._get_current_object(),
-            content=form.text.data,
+            content=review_form.text.data,
             date=current_time(),
-            boba_id = result.id,
             boba_name = result.name,
             boba_price = result.price
         )
         review.save()
+    
+    cart_form = AddToCartForm()
+    if cart_form.validate_on_submit() and current_user.is_authenticated:
+        boba = Boba(
+            buyer = current_user.get_current_object(),
+            boba_name = result.name,
+            boba_price = result.price
+        )
+        boba.save()
 
         return redirect(request.path)
 
     reviews = Review.objects(boba_id=boba_id)
 
     return render_template(
-        "boba_detail.html", form=form, boba=result, reviews=reviews
+        "boba_detail.html", form=review_form, boba=result, reviews=reviews
     )
 
 
