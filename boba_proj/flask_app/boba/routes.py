@@ -91,8 +91,9 @@ def boba_nutrition(boba_id):
 def user_detail(username):
     user = User.objects(username=username).first()
     reviews = Review.objects(commenter=user)
+    img = get_b64_img(user.username)
 
-    return render_template("user_detail.html", username=username, reviews=reviews)
+    return render_template("user_detail.html", username=username, reviews=reviews, image=img)
 
 #TODO: WIP
 @bobas.route("/user/cart")
