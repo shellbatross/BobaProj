@@ -14,7 +14,7 @@ class Boba:
 
 
 #Gonna change this to make links instead to get the calorie information 
-class MovieClient():
+class BobaClient():
 
     def get_nutrition(x,boba_id):
         api_url = 'https://api.calorieninjas.com/v1/nutrition?query='
@@ -64,16 +64,3 @@ class MovieClient():
 
 
 
-
-## -- Example usage -- ###
-if __name__ == "__main__":
-    import os
-
-    client = MovieClient(os.environ.get("OMDB_API_KEY"))
-
-    movies = client.search("guardians")
-
-    for movie in movies:
-        print(movie)
-
-    print(len(movies))

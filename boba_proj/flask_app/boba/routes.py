@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, url_for, redirect, request, flash
 from flask_login import current_user
 
-from .. import movie_client
+from .. import boba_client
 from ..forms import BobaReviewForm, SearchForm, AddToCartForm
 from ..models import User, Review, Boba
 from ..utils import current_time
@@ -27,22 +27,12 @@ def index():
     return render_template("index.html", all_flavors= pics)
 
 
-@bobas.route("/search-results/<query>", methods=["GET"])
-def query_results(query):
-    try:
-        results = movie_client.search(query)
-    except ValueError as e:
-        flash(str(e))
-        return redirect(url_for("movies.index"))
-
-    return render_template("query.html", results=results)
-
 #WIP
 #TODO: Do AddToCart here since we have boba id and all the info
 @bobas.route("/bobas/<boba_id>", methods=["GET", "POST"])
 def boba_detail(boba_id):
     try:
-        result = movie_client.retrieve_boba_by_id(boba_id) #TODO: harcode a list of bobas
+        result = boba_client.retrieve_boba_by_id(boba_id) #TODO: harcode a list of bobas
     except ValueError as e:
         flash(str(e))
         return redirect(url_for("users.login"))
@@ -78,7 +68,7 @@ def boba_detail(boba_id):
 @bobas.route("/bobas/<boba_id>/nutrition", methods=["GET", "POST"])
 def boba_nutrition(boba_id):
     try:
-        nutrition = movie_client.get_nutrition(boba_id)
+        nutrition = boba_client.get_nutrition(boba_id)
     except ValueError as e:
         flash(str(e))
         return redirect(url_for("users.login"))

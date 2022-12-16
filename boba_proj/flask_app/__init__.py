@@ -18,7 +18,7 @@ from datetime import datetime
 import os
 
 # local
-from .client import MovieClient
+from .client import BobaClient
 
 csp = {
     'default-src': [
@@ -36,7 +36,7 @@ db = MongoEngine()
 login_manager = LoginManager()
 bcrypt = Bcrypt()
 mail = Mail()
-movie_client = MovieClient()
+boba_client = BobaClient()
 talisman = Talisman()
 
 
