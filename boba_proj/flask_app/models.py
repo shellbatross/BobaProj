@@ -31,6 +31,7 @@ class Review(db.Document):
     date = db.StringField(required=True)
     boba_name = db.StringField(required=True, min_length=1, max_length=9)
     boba_price = db.IntField(required=True, min_length=1, max_length=100)
+    image = db.StringField()
 
 
 class Boba(db.Document):

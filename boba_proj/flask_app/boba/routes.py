@@ -44,7 +44,8 @@ def boba_detail(boba_id):
             content=review_form.text.data,
             date=current_time(),
             boba_name = result.name,
-            boba_price = result.price
+            boba_price = result.price, 
+            image = get_b64_img(current_user._get_current_object().username)
         )
         review.save()
         return redirect(request.path)

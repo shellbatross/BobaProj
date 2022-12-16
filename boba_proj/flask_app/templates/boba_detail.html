@@ -27,12 +27,12 @@
     <ul class="media-list">
       {% for review in reviews %}
       <li class="media review-item">
+        <img class="mr-3 comment-pic" src="data:image/png;base64,{{review.image}}" alt="">
         <div class="media-body">
           <span class="float-right">
             <small>{{ review.date }}</small>
           </span>
           <a href="{{ url_for('bobas.user_detail', username=review.commenter.username) }}">
-            <img src = "{{url_for('static', filename = '/images/' + review.boba_name + '.png')}}" height = 50 ></img>
             <strong>@{{ review.commenter.username }}</strong>
           </a>
           <p>
