@@ -32,6 +32,7 @@
             <small>{{ review.date }}</small>
           </span>
           <a href="{{ url_for('bobas.user_detail', username=review.commenter.username) }}">
+            <img src = "{{url_for('static', filename = '/images/' + review.boba_name + '.png')}}" height = 50 ></img>
             <strong>@{{ review.commenter.username }}</strong>
           </a>
           <p>
