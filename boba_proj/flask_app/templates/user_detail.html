@@ -19,7 +19,10 @@
                         <small>{{ review.date }}</small>
                     </span>
                     <strong>For: <a href="{{ url_for('bobas.boba_detail', boba_id=review.boba_name) }}">
+                            <p>
+                            <img src = "{{url_for('static', filename = '/images/' + review.boba_name + '.png')}}" height = 50 ></img>
                             {{ review.boba_name}}
+                            </p>
                         </a>
                     </strong>
                     <p>
